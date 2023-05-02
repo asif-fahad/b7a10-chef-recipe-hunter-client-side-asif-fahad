@@ -10,7 +10,9 @@ const Main = () => {
             <div className='md:min-h-[calc(100vh-341px)]'>
                 <Outlet></Outlet>
             </div>
-            <Footer></Footer>
+            <div className='mt-5'>
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import Blog from "../pages/Blog/Blog";
 import Login from "../pages/Login/Login/Login";
 import Registration from "../pages/Login/Registration/Registration";
+import ChefsDetails from "../pages/Chefs/ChefsDetails/ChefsDetails";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
             {
                 path: 'blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/chefsDetails/:id',
+                element: <ChefsDetails></ChefsDetails>,
+                loader: ({ params }) => fetch(`https://b7a10-chef-recipe-hunter-server-side-asif-fahad-asif-fahad.vercel.app/chefs/${params.id}`)
             }
         ]
     },
