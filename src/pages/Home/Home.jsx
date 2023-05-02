@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css'
+import Chefs from '../Chefs/Chefs/Chefs';
 
 const Home = () => {
+    const [data, setData] = useState([]);
+
+
+    useEffect((() => {
+        fetch('https://b7a10-chef-recipe-hunter-server-side-asif-fahad-asif-fahad.vercel.app/chefs')
+            .then(res => res.json())
+            .then(data => setData(data))
+    }), [])
+
     return (
         <div>
             <section className='bg-image '>
@@ -21,7 +31,7 @@ const Home = () => {
                 </div >
             </section>
 
-            <section className='mt-5'>
+            <section className='mt-5 bg-gray-300'>
                 <div className='w-5/12 mx-auto'>
                     <div className='text-center mb-2 text-3xl font-extrabold'>
                         <h1>Special Features</h1>
@@ -39,6 +49,27 @@ const Home = () => {
                             <h2 className='font-bold'>Membership</h2>
                             <p>As I have already seen, I will come to the smallest detail, who takes up the cover of our training program for the benefit of the players.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                {
+                    data.map(chef => <Chefs
+                        key={chef.id}
+                        chef={chef}
+                    ></Chefs>)
+                }
+            </section>
+
+            <section className='mt-5 bg-gray-200'>
+                <div className='w-5/12 mx-auto'>
+                    <div className='text-center mb-2 text-3xl font-extrabold'>
+                        <h1>TODAYS EVENT</h1>
+                    </div>
+                    <div className='text-center'>
+                        <h1>HouseWife Cooking Competition</h1>
+                        <p>Saturday, May 6, 2023</p>
                     </div>
                 </div>
             </section>

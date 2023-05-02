@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ChefsDetails = () => {
+
     return (
         <div>
 
