@@ -1,0 +1,8 @@
+.bg-image {
+    background-image: url('../../../public/top-view-table-full-delicious-food-composition.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 80%;
+
+}
