@@ -32,20 +32,20 @@ const Home = () => {
             </section>
 
             <section className='mt-5 bg-gray-300'>
-                <div className='w-5/12 mx-auto'>
+                <div className='lg:w-5/12 mx-auto'>
                     <div className='text-center mb-2 text-3xl font-extrabold'>
                         <h1>Special Features</h1>
                     </div>
                     <div className='flex gap-2'>
-                        <div className='border text-center w-72'>
+                        <div className='border text-center lg:w-72'>
                             <h2 className='font-bold'>Food Nutritions</h2>
                             <p>In the same way, the types that seem to us little clear now should become clear in the future.</p>
                         </div>
-                        <div className='border text-center w-72'>
+                        <div className='border text-center lg:w-72'>
                             <h2 className='font-bold'>Cooking Period</h2>
                             <p>But the duis or him iriure pain in hendreit in vulputate wants to be molestie consequat, or that pain eu feugiat no facilisis.</p>
                         </div>
-                        <div className='border text-center w-72'>
+                        <div className='border text-center lg:w-72'>
                             <h2 className='font-bold'>Membership</h2>
                             <p>As I have already seen, I will come to the smallest detail, who takes up the cover of our training program for the benefit of the players.</p>
                         </div>
