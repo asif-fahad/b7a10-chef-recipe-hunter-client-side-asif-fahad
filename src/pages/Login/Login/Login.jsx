@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { AuthContext } from '../../../providers/AuthProviders';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
 
-    const { signIn, googleSignIn } = useContext(AuthContext);
+    const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
 
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider()
 
     const location = useLocation();
     const navigate = useNavigate()
@@ -35,10 +36,21 @@ const Login = () => {
     }
 
     const handleGoogleLogin = () => {
-        googleSignIn(provider)
+        googleSignIn(googleProvider)
             .then(result => {
-                const user = result.user;
-                console.log(user)
+                const loggedInUser = result.user;
+                console.log(loggedInUser)
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            })
+    }
+
+    const handleGithubLogin = () => {
+        githubSignIn(githubProvider)
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser)
             })
             .catch(error => {
                 console.log('error', error.message);
@@ -79,7 +91,7 @@ const Login = () => {
                                 alt=""
                             />
                             <img
-
+                                onClick={handleGithubLogin}
                                 className="social-button"
                                 src="https://i.ibb.co/g9f4P0S/github-btn.png"
                                 alt=""
