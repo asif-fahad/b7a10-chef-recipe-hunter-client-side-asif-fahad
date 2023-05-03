@@ -17,7 +17,7 @@ const Header = () => {
         <div>
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">Italian Chef</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">Italian Chefs</Link>
                 </div>
                 <div className="flex-none gap-1 lg:gap-5">
                     <NavLink to='/' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Home</NavLink>
