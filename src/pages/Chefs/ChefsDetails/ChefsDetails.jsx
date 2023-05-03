@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import toast, { Toaster } from 'react-hot-toast';
+import LazyLoad from 'react-lazy-load';
 
 const ChefsDetails = () => {
     const details = useLoaderData();
@@ -22,7 +23,9 @@ const ChefsDetails = () => {
             </div>
             <div className='mt-5'>
                 <div className="card bg-base-100 shadow-xl">
-                    <figure><img src={chef_photo} alt="chefs" className=' object-contain' /></figure>
+                    <div className='mx-auto'>
+                        <LazyLoad height={400} width={300} threshold={0.95} onContentVisible={() => { console.log('loaded!') }}><figure><img src={chef_photo} alt="chefs" className=' object-contain' /></figure></LazyLoad>
+                    </div>
                     <div className="card-body">
                         <h2 className="card-title">{chef_name}</h2>
                         <p><span className='font-semibold' >Description:</span> {description}</p>
@@ -36,7 +39,7 @@ const ChefsDetails = () => {
                             <div>{likes}</div>
                         </div>
                         <div className='grid grid-cols-1 lg:grid-cols-3'>
-                            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                            <div className="card card-compact w-full lg:w-96 bg-base-100 shadow-xl">
                                 <div className="card-body">
                                     <div>
                                         <p><span className='font-semibold' >Recipe One:</span> {recipe_one}</p>
@@ -52,7 +55,7 @@ const ChefsDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                            <div className="card card-compact w-full lg:w-96 bg-base-100 shadow-xl">
                                 <div className="card-body">
                                     <div>
                                         <p><span className='font-semibold' >Recipe Two:</span> {recipe_two}</p>
@@ -68,7 +71,7 @@ const ChefsDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                            <div className="card card-compact w-full lg:w-96 bg-base-100 shadow-xl">
                                 <div className="card-body">
                                     <div>
                                         <p><span className='font-semibold' >Recipe Three:</span> {recipe_three}</p>
