@@ -1,4 +1,6 @@
 import React from 'react';
+const ref = React.createRef();
+import ReactToPdf from "react-to-pdf";
 
 const Blog = () => {
     return (
@@ -6,7 +8,16 @@ const Blog = () => {
             <div>
                 <h1 className='text-4xl text-center m-0 bg-gray-200 p-10'>Blog</h1>
             </div>
-            <div className='ms-5 mt-5'>
+
+            <div className='my-4 mx-auto w-56'>
+                <ReactToPdf targetRef={ref} filename="blog.pdf">
+                    {({ toPdf }) => (
+                        <button onClick={toPdf} className='btn '>Generate pdf</button>
+                    )}
+                </ReactToPdf>
+            </div>
+
+            <div ref={ref} className='ms-5 mt-5'>
                 <div>
                     <div className='font-bold text-2xl'>
                         a. Tell us the differences between uncontrolled and controlled components.

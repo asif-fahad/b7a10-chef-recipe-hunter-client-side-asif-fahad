@@ -1,4 +1,4 @@
-live site:
+live site: https://b7a10-chef-recipe-hunter-9dcb4.web.app/
 
 * This project is created using react router
 * It has firebase authentication

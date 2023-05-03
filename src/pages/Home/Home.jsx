@@ -28,7 +28,7 @@ const Home = () => {
         <div>
             <section className='bg-image '>
                 <div className='flex flex-col lg:flex-row justify-center justify-items-center text-center'>
-                    <div className=''>
+                    <div className='bg-black opacity-80'>
                         <h1 className='text-2xl w-full lg:leading-tight sm:text-4xl lg:text-6xl lg:max-w-3xl text-white'>
                             One Step Closer
                             <br />
