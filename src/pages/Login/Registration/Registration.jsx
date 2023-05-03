@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
-import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, updateProfile } from 'firebase/auth';
 
 const Registration = () => {
 
@@ -9,11 +9,15 @@ const Registration = () => {
 
     console.log(user)
 
+    const [error, setError] = useState('');
+
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider()
 
     const handleRegister = event => {
         event.preventDefault();
+
+        setError('');
 
         const form = event.target;
         const email = form.email.value;
@@ -22,16 +26,34 @@ const Registration = () => {
         const photo = form.photo.value;
         console.log(email, password, name, photo);
 
+        if (password.length < 6) {
+            setError('Please add at least 6 characters in your password')
+            return;
+        }
+
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
+                updateUserData(result.user, name, photo);
             })
             .catch(error => {
                 console.log(error);
             })
 
+        const updateUserData = (user, name, photo) => {
+            updateProfile(user, {
+                displayName: name,
+                photoURL: photo
+            })
+                .then(() => {
+                    console.log('user name updated')
+                })
+                .catch(error => {
+                    setError(error.message);
+                })
+        }
 
     }
 
@@ -90,6 +112,7 @@ const Registration = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                <p className='text-red-600'>{error}</p>
                                 <label className="label">
                                     <Link to='/login' className="label-text-alt link link-hover">Already have an account? Login now.</Link>
                                 </label>

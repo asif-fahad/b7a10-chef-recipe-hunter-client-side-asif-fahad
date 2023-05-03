@@ -53,7 +53,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='grid grid-cols-1 lg:grid-cols-2 mt-5 w-8/12 mx-auto gap-5'>
+            <section className='grid grid-cols-1 lg:grid-cols-2 mt-5 lg:w-8/12 mx-auto gap-5'>
                 {
                     data.map(chef => <Chefs
                         key={chef.id}

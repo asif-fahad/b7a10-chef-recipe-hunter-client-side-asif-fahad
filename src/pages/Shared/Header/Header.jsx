@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
 
 const Header = () => {
@@ -12,17 +12,18 @@ const Header = () => {
             .catch(error => console.error(error))
     }
 
+
     return (
         <div>
             <div className="navbar bg-base-100">
                 <div className="flex-1">
                     <a className="btn btn-ghost normal-case text-xl">Italian Chef</a>
                 </div>
-                <div className="flex-none gap-2">
+                <div className="flex-none gap-1 lg:gap-5">
                     <NavLink to='/' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Home</NavLink>
                     <NavLink to='/blog' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Blog</NavLink>
-                    <NavLink to='/login' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Login</NavLink>
-                    <NavLink to='/registration' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Registration</NavLink>
+                    {/* <NavLink to='/login' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Login</NavLink>
+                    <NavLink to='/registration' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Registration</NavLink> */}
                     {/* <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -41,15 +42,14 @@ const Header = () => {
                         </ul>
                     </div> */}
                     {user ? <>
-                        <span aria-label={user.email} title={user.email} >{user.email}</span>
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div aria-label={user.name} title={user.name} className="w-10 rounded-full">
-                                <img src={user.photo} />
+                            <div aria-label={user.displayName} title={user.displayName} className="w-10 rounded-full">
+                                <img src={user.photoURL} />
                             </div>
                         </label>
                         <button onClick={handleLogOut} className='btn btn-success'>Logout</button>
                     </> : <>
-                        <button to='/login' className='btn btn-info'>Login</button>
+                        <Link to='/login'><button className='btn btn-info'>Login</button></Link>
                     </>}
                 </div>
             </div>
