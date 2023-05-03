@@ -23,7 +23,7 @@ const Header = () => {
                     <NavLink to='/blog' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Blog</NavLink>
                     <NavLink to='/login' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Login</NavLink>
                     <NavLink to='/registration' className={({ isActive }) => (isActive ? 'font-medium tracking-wide text-cyan-600 transition-colors duration-200' : 'font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600')}>Registration</NavLink>
-                    <div className="dropdown dropdown-end">
+                    {/* <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -39,11 +39,18 @@ const Header = () => {
                             <li><a>Settings</a></li>
                             <li><a>Logout</a></li>
                         </ul>
-                    </div>
+                    </div> */}
                     {user ? <>
-                        <span>{user.email}</span>
-                        <button onClick={handleLogOut}>Logout</button>
-                    </> : <></>}
+                        <span aria-label={user.email} title={user.email} >{user.email}</span>
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div aria-label={user.name} title={user.name} className="w-10 rounded-full">
+                                <img src={user.photo} />
+                            </div>
+                        </label>
+                        <button onClick={handleLogOut} className='btn btn-success'>Logout</button>
+                    </> : <>
+                        <button to='/login' className='btn btn-info'>Login</button>
+                    </>}
                 </div>
             </div>
         </div>

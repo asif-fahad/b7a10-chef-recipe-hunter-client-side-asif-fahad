@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Registration = () => {
 
-    const { user, createUser } = useContext(AuthContext);
+    const { user, createUser, googleSignIn } = useContext(AuthContext);
 
     console.log(user)
+
+    const provider = new GoogleAuthProvider();
 
     const handleRegister = event => {
         event.preventDefault();
@@ -26,6 +29,19 @@ const Registration = () => {
             })
             .catch(error => {
                 console.log(error);
+            })
+
+
+    }
+
+    const handleGoogleLogin = () => {
+        googleSignIn(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.log('error', error.message);
             })
     }
 
@@ -70,7 +86,7 @@ const Registration = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                             <img
-
+                                onClick={handleGoogleLogin}
                                 className="social-button"
                                 src="https://i.ibb.co/gSTHXZJ/google-btn.png"
                                 alt=""
