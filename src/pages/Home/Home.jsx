@@ -4,7 +4,17 @@ import Chefs from '../Chefs/Chefs/Chefs';
 
 const Home = () => {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(true);
+
+
+
+    useEffect((() => {
+
+        fetch('https://b7a10-chef-recipe-hunter-server-side-asif-fahad-asif-fahad.vercel.app/chefs')
+            .then(res => res.json())
+            .then(data => setData(data))
+        setLoading(false);
+    }), [])
 
     if (loading) {
         return <div
@@ -15,14 +25,6 @@ const Home = () => {
             >Loading...</span>
         </div>
     }
-
-    useEffect((() => {
-        setLoading(true)
-        fetch('https://b7a10-chef-recipe-hunter-server-side-asif-fahad-asif-fahad.vercel.app/chefs')
-            .then(res => res.json())
-            .then(data => setData(data))
-        setLoading(false);
-    }), [])
 
     return (
         <div>

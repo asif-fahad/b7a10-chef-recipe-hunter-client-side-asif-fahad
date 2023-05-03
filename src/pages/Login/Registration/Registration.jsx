@@ -7,7 +7,7 @@ const Registration = () => {
 
     const { user, createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
 
-    console.log(user)
+    // console.log(user)
 
     const [error, setError] = useState('');
 
@@ -24,7 +24,7 @@ const Registration = () => {
         const password = form.password.value;
         const name = form.name.value;
         const photo = form.photo.value;
-        console.log(email, password, name, photo);
+        // console.log(email, password, name, photo);
 
         if (password.length < 6) {
             setError('Please add at least 6 characters in your password')
@@ -34,12 +34,12 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 form.reset();
                 updateUserData(result.user, name, photo);
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
             })
 
         const updateUserData = (user, name, photo) => {
@@ -48,7 +48,7 @@ const Registration = () => {
                 photoURL: photo
             })
                 .then(() => {
-                    console.log('user name updated')
+                    // console.log('user name updated')
                 })
                 .catch(error => {
                     setError(error.message);
@@ -61,10 +61,10 @@ const Registration = () => {
         googleSignIn(googleProvider)
             .then(result => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser)
+                // console.log(loggedInUser)
             })
             .catch(error => {
-                console.log('error', error.message);
+                // console.log('error', error.message);
             })
     }
 
@@ -72,10 +72,10 @@ const Registration = () => {
         githubSignIn(githubProvider)
             .then(result => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser)
+                // console.log(loggedInUser)
             })
             .catch(error => {
-                console.log('error', error.message);
+                // console.log('error', error.message);
             })
     }
 
