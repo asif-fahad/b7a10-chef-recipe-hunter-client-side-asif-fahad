@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { AuthContext } from '../../../providers/AuthProviders';
@@ -7,6 +7,8 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 const Login = () => {
 
     const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider()
@@ -18,6 +20,8 @@ const Login = () => {
 
     const handleLogin = event => {
         event.preventDefault()
+
+        setError('');
 
         const form = event.target;
         const email = form.email.value;
@@ -32,6 +36,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error)
+                setError('Email or Password is incorrect');
             })
     }
 
@@ -80,6 +85,7 @@ const Login = () => {
                                 <label className="label">
                                     <Link to='/registration' className="label-text-alt link link-hover">Don't have a account? Register now.</Link>
                                 </label>
+                                <p className='text-red-500'>{error}</p>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
