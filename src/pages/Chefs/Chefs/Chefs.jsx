@@ -8,7 +8,7 @@ const Chefs = ({ chef }) => {
 
     return (
         <div >
-            <div className="card w-full lg:w-96 h-96 bg-base-100 shadow-xl">
+            <div className="card w-9/12 mx-auto lg:w-96 h-96 bg-base-100 shadow-xl">
                 <figure><img src={chef_photo} alt="chefs" className='h-52 object-contain' /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{chef_name}</h2>
